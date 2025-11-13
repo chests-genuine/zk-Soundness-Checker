@@ -21,3 +21,5 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+with open("verification_log.txt", "a") as f:
+    f.write(f"{CONTRACT_ADDRESS} | {zk_hash}\n")
