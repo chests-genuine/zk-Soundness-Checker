@@ -21,3 +21,5 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+if len(sys.argv) > 1:
+    CONTRACT_ADDRESS = sys.argv[1]
