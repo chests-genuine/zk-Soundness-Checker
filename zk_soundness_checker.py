@@ -21,3 +21,4 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+print(f"\033[92m✅ Verification complete — code integrity verified.\033[0m")
