@@ -21,3 +21,7 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+import time
+start = time.time()
+# ... основной код ...
+print(f"⏱️ Verification time: {time.time() - start:.2f}s")
