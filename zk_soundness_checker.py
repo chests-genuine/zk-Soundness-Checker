@@ -21,3 +21,6 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+if not code:
+    print("⚠️ Contract has no bytecode (possibly EOA).")
+    return
