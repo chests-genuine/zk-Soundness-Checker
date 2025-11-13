@@ -21,3 +21,6 @@ def verify_zk_contract(address):
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
+if not Web3.is_address(address):
+    print("❌ Invalid Ethereum address format.")
+    sys.exit(1)
