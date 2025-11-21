@@ -13,6 +13,12 @@ def parse_args():
         required=True,
         help="Path to JSON file with results (list of objects)."
     )
+        parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit JSON summary instead of human-readable text.",
+    )
+
     return parser.parse_args()
 
 def load_data(path):
@@ -31,6 +37,7 @@ def summarize(results):
     print(f"Passed     : {passes}")
     print(f"Failed     : {fails}")
     if fails:
+        
         print("\nFailures details:")
         for r in results:
             if r.get("status") != "pass":
