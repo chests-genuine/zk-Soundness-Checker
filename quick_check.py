@@ -46,9 +46,13 @@ def summarize(checks, verbose=False):
 def main():
     args = parse_args()
     checks = load_checks(args.input)
-    if not isinstance(checks, list):
+      if not isinstance(checks, list):
         print("ERROR: Expected a list of check results (JSON array).", file=sys.stderr)
         sys.exit(1)
+    if any(not isinstance(c, dict) for c in checks):
+        print("ERROR: All check entries must be JSON objects (dicts).", file=sys.stderr)
+        sys.exit(1)
+
     summarize(checks, verbose=args.verbose)
     if any(c.get("status") != "pass" for c in checks):
         sys.exit(2)
