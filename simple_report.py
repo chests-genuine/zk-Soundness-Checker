@@ -3,6 +3,7 @@
 import argparse
 import json
 import sys
+from typing import Any, List, Dict
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -15,7 +16,8 @@ def parse_args():
     )
     return parser.parse_args()
 
-def load_data(path):
+def load_data(path: str) -> Any:
+    """Load JSON data from the given file path."""
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
