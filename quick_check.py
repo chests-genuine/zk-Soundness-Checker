@@ -32,12 +32,20 @@ def summarize(checks, verbose=False):
     total = len(checks)
     passed = sum(1 for c in checks if c.get("status") == "pass")
     failed = total - passed
+        failure_types = {}
+    for c in checks:
+        if c.get("status") != "pass":
+            t = c.get("type", "unknown")
+            failure_types[t] = failure_types.get(t, 0) + 1
     print(f"Total checks: {total}")
     print(f"Passed:       {passed}")
     print(f"Failed:       {failed}")
-    if verbose and failed > 0:
-        print("\nFailures details:")
-        for c in checks:
+
+    if verbose and failure_types:
+        print("\nFailure types:")
+        for t, count in sorted(failure_types.items()):
+            print(f"  {t}: {count}")
+
             if c.get("status") != "pass":
                 name = c.get("name", "<unknown>")
                 msg  = c.get("message", "<no-message>")
