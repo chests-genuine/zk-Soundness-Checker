@@ -3,7 +3,7 @@ import argparse
 import json
 import sys
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Quick summary checker for zk-Soundness-Checker"
     )
