@@ -3,8 +3,7 @@ import argparse
 import json
 import sys
 
-
-def parse_args() -> argmparse.Namespace:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Print failing checks from a JSON results file."
     )
