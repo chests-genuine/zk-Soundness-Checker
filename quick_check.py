@@ -41,7 +41,7 @@ def summarize(checks, verbose=False):
             if c.get("status") != "pass":
                 name = c.get("name", "<unknown>")
                 msg  = c.get("message", "<no-message>")
-                print(f" - {name}: {msg}")
+                               print(f" ✗ {name}: {msg}")
 
 def main():
     args = parse_args()
