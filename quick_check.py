@@ -12,6 +12,12 @@ def parse_args():
         required=True,
         help="Path to input JSON file with check results."
     )
+        parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Reserved: disable colored output if added in the future.",
+    )
+
     parser.add_argument(
         "--verbose",
         action="store_true",
