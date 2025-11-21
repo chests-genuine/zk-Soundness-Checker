@@ -59,6 +59,10 @@ def main() -> None:
             if msg:
                 print(f"  -> {msg}")
         print(f"\nTotal failures: {len(failures)}")
+    else:
+        print("Failing checks:")
+        for c in sorted(failures, key=lambda x: str(x.get("name", ""))):
+            ...
 
     # non-zero exit if there are failures
     sys.exit(2)
