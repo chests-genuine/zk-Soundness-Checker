@@ -13,6 +13,11 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--filter-name-contains",
+        help="Only consider checks whose name contains this substring.",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -39,6 +44,11 @@ def load_results(path: str):
 def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
+    if args.filter_name_contains:
+        checks = [
+            c for c in checks
+            if args.filter_name_contains in str(c.get("name", ""))
+        ]
 
     failures = [c for c in checks if c.get("status") != "pass"]
 
