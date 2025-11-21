@@ -32,6 +32,9 @@ def load_results(path: str):
     if not isinstance(data, list):
         print("ERROR: expected a JSON array of check results.", file=sys.stderr)
         sys.exit(1)
+    if any(not isinstance(item, dict) for item in data):
+        print("ERROR: each check result must be a JSON object (dict).", file=sys.stderr)
+        sys.exit(1)
 
     return data
 
