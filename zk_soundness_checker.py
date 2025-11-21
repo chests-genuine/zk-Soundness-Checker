@@ -18,6 +18,11 @@ def verify_zk_contract(address):
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
-
+ if "your_api_key" in RPC_URL:
+        print(
+            "⚠️ RPC_URL still contains 'your_api_key' placeholder; "
+            "you likely need to set a real endpoint.",
+            file=sys.stderr,
+        )
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
