@@ -58,7 +58,9 @@ def main() -> None:
             print(f"[{status}] {name}")
             if msg:
                 print(f"  -> {msg}")
-        print(f"\nTotal failures: {len(failures)}")
+                print(f"\nTotal checks   : {len(checks)}")
+        print(f"Total failures : {len(failures)}")
+
 
     # non-zero exit if there are failures
     sys.exit(2)
