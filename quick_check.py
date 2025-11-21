@@ -32,7 +32,8 @@ def summarize(checks, verbose=False):
     total = len(checks)
     passed = sum(1 for c in checks if c.get("status") == "pass")
     failed = total - passed
-    print(f"Total checks: {total}")
+     check_word = "check" if total == 1 else "checks"
+    print(f"Total {check_word}: {total}")
     print(f"Passed:       {passed}")
     print(f"Failed:       {failed}")
     if verbose and failed > 0:
