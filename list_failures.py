@@ -39,6 +39,7 @@ def load_results(path: str):
 def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
+    print(f"Loaded {len(checks)} check result(s) from {args.input}", file=sys.stderr)
 
     failures = [c for c in checks if c.get("status") != "pass"]
 
