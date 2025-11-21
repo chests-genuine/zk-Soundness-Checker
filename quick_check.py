@@ -29,6 +29,8 @@ def load_checks(path):
         sys.exit(1)
 
 def summarize(checks, verbose=False):
+    if verbose:
+        print("=== zk soundness summary ===")
     total = len(checks)
     passed = sum(1 for c in checks if c.get("status") == "pass")
     failed = total - passed
