@@ -35,7 +35,8 @@ def load_results(path: str):
 
     return data
 
-
+RED = "\x1b[31m"
+RESET = "\x1b[0m"
 def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
@@ -55,7 +56,7 @@ def main() -> None:
             name = c.get("name", "<unknown>")
             status = c.get("status", "<unknown>")
             msg = c.get("message", "")
-            print(f"[{status}] {name}")
+                       print(f"[{RED}{status}{RESET}] {name}")
             if msg:
                 print(f"  -> {msg}")
         print(f"\nTotal failures: {len(failures)}")
