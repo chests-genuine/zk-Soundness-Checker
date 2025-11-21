@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Print failing checks from a JSON results file produced by zk-Soundness-Checker.
+"""
 import argparse
 import json
 import sys
