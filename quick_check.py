@@ -25,7 +25,7 @@ def load_checks(path):
             data = json.load(f)
         return data
     except Exception as e:
-        print(f"ERROR: Failed to load JSON from {path}: {e}", file=sys.stderr)
+               print(f"ERROR: Failed to load JSON from {path}: {e}", file=sys.stderr)
         sys.exit(1)
 
 def summarize(checks, verbose=False):
