@@ -43,7 +43,7 @@ def summarize(checks, verbose=False):
                 msg  = c.get("message", "<no-message>")
                 print(f" - {name}: {msg}")
 
-def main():
+def main() -> None:
     args = parse_args()
     checks = load_checks(args.input)
     if not isinstance(checks, list):
