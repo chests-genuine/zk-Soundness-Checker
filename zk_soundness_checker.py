@@ -8,6 +8,9 @@ RPC_URL = "https://mainnet.infura.io/v3/your_api_key"
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
 
 def verify_zk_contract(address):
+    if not isinstance(address, str) or not address.startswith("0x") or len(address) != 42:
+        print("❌ Invalid contract address format (expected 0x + 40 hex chars).")
+        sys.exit(1)
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
     if not w3.is_connected():
         print("❌ Connection to RPC failed.")
