@@ -17,7 +17,9 @@ def verify_zk_contract(address):
     print("🔗 Connected to Ethereum Mainnet")
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
-    print("✅ Verification complete — code integrity verified for zk environment.")
+       print("✅ Verification complete — code integrity hash computed.")
+    # If you add future checks (e.g. compare against expected hash), you can
+    # potentially return different exit codes here.
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
