@@ -23,7 +23,9 @@ def load_data(path):
         print(f"ERROR: Could not load JSON file {path}: {e}", file=sys.stderr)
         sys.exit(1)
 
-def summarize(results):
+def summarize(results: List[Dict[str, Any]]) -> None:
+    """Print a human-readable summary and failure details."""
+    print("=== Summary report ===")
     total = len(results)
     passes = sum(1 for r in results if r.get("status") == "pass")
     fails = total - passes
