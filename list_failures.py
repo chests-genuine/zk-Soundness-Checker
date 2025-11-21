@@ -64,5 +64,6 @@ def main() -> None:
     sys.exit(2)
 
 
+# Run as a script
 if __name__ == "__main__":
     main()
