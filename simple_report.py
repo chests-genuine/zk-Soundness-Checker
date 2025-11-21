@@ -30,10 +30,10 @@ def summarize(results):
     print(f"Total checks: {total}")
     print(f"Passed     : {passes}")
     print(f"Failed     : {fails}")
-    if fails:
+     if fails:
         print("\nFailures details:")
-        for r in results:
-            if r.get("status") != "pass":
+        failures = [r for r in results if r.get("status") != "pass"]
+        for r in sorted(failures, key=lambda x: str(x.get("name", ""))):
                 name = r.get("name", "<unnamed>")
                 msg  = r.get("message", "")
                 print(f" * {name}: {msg}")
