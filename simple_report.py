@@ -38,6 +38,10 @@ def summarize(results):
                 msg  = r.get("message", "")
                 print(f" * {name}: {msg}")
 
+# Exit codes:
+# 0 = all checks passed
+# 1 = input / JSON / format error
+# 2 = one or more checks failed
 def main():
     args = parse_args()
     data = load_data(args.file)
