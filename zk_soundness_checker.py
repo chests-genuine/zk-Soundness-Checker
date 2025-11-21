@@ -7,7 +7,7 @@ import hashlib
 RPC_URL = "https://mainnet.infura.io/v3/your_api_key"
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
 
-def verify_zk_contract(address):
+def verify_zk_contract(address: str, expected_sha256: str | None = None, json_mode: bool = False) -> None:
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
     if not w3.is_connected():
         print("❌ Connection to RPC failed.")
