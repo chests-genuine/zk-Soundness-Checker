@@ -1,4 +1,11 @@
 # zk_soundness_checker.py
+"""
+zk_soundness_checker.py
+
+Minimal helper to fetch on-chain bytecode for a contract and compute a hash
+for ZK-soundness / code-integrity checks.
+"""
+
 from web3 import Web3
 import sys
 import hashlib
