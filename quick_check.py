@@ -35,10 +35,10 @@ def summarize(checks, verbose=False):
     print(f"Total checks: {total}")
     print(f"Passed:       {passed}")
     print(f"Failed:       {failed}")
-    if verbose and failed > 0:
+      if verbose and failed > 0:
         print("\nFailures details:")
-        for c in checks:
-            if c.get("status") != "pass":
+        failures = [c for c in checks if c.get("status") != "pass"]
+        for c in sorted(failures, key=lambda x: str(x.get("name", ""))):
                 name = c.get("name", "<unknown>")
                 msg  = c.get("message", "<no-message>")
                 print(f" - {name}: {msg}")
