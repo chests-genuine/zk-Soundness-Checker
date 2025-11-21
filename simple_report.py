@@ -27,7 +27,8 @@ def summarize(results):
     total = len(results)
     passes = sum(1 for r in results if r.get("status") == "pass")
     fails = total - passes
-    print(f"Total checks: {total}")
+      noun = "check" if total == 1 else "checks"
+    print(f"Total {noun}: {total}")
     print(f"Passed     : {passes}")
     print(f"Failed     : {fails}")
     if fails:
