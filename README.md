@@ -8,7 +8,7 @@
 ## Установка
 1. Установите Python 3.10+
 2. Установите зависимости:
-   pip install web3
+   pip install web3.
 3. В файле `zk_soundness_checker.py` замените `your_api_key` на ваш ключ Infura или RPC-узла.
 
 ## Запуск
