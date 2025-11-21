@@ -3,7 +3,7 @@ import argparse
 import json
 import sys
 
-
+DEFAULT_STATUS_FIELD = "status"
 def parse_args() -> argmparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Print failing checks from a JSON results file."
@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--status-field",
+        default=DEFAULT_STATUS_FIELD,
+        help="JSON field name that holds the status value (default: status).",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
