@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+zk summary checker — summarize JSON results from zk-Soundness-Checker.
+"""
 import argparse
 import json
 import sys
