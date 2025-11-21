@@ -54,5 +54,6 @@ def main():
         sys.exit(2)
     sys.exit(0)
 
+# CLI entrypoint
 if __name__ == "__main__":
-    main()
+      main()
