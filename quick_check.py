@@ -3,6 +3,7 @@ import argparse
 import json
 import sys
 
+STATUS_KEY = "status"
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Quick summary checker for zk-Soundness-Checker"
