@@ -21,8 +21,9 @@ def parse_args():
 
 def load_checks(path):
     try:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+             with open(path, "r", encoding="utf-8") as f:
+            raw = f.read().lstrip("\ufeff")
+            data = json.loads(raw)
         return data
     except Exception as e:
         print(f"ERROR: Failed to load JSON from {path}: {e}", file=sys.stderr)
