@@ -46,12 +46,13 @@ def main() -> None:
         print("No failing checks 🎉")
         sys.exit(0)
 
-    if args.names_only:
-        for c in failures:
+     if args.names_only:
+        for c in sorted(failures, key=lambda x: str(x.get("name", ""))):
             name = c.get("name", "<unknown>")
             print(name)
-    else:
-        for c in failures:
+
+      else:
+        for c in sorted(failures, key=lambda x: str(x.get("name", ""))):
             name = c.get("name", "<unknown>")
             status = c.get("status", "<unknown>")
             msg = c.get("message", "")
