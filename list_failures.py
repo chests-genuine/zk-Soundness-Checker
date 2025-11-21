@@ -2,7 +2,7 @@
 import argparse
 import json
 import sys
-
+from typing import Any, List, Dict
 
 def parse_args() -> argmparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -21,7 +21,7 @@ def parse_args() -> argmparse.Namespace:
     return parser.parse_args()
 
 
-def load_results(path: str):
+def load_results(path: str) -> List[Dict[str, Any]]:
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
