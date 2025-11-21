@@ -40,7 +40,15 @@ def summarize(results):
 
 def main():
     args = parse_args()
-    data = load_data(args.file)
+       if args.file == "-":
+        try:
+            data = json.load(sys.stdin)
+        except Exception as e:  # noqa: BLE001
+            print(f"ERROR: Could not load JSON from stdin: {e}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        data = load_data(args.file)
+
     if not isinstance(data, list):
         print("ERROR: expected JSON array of result objects", file=sys.stderr)
         sys.exit(1)
