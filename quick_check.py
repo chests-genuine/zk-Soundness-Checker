@@ -5,7 +5,9 @@ import sys
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Quick summary checker for zk-Soundness-Checker"
+        description="Quick summary checker for zk-Soundness-Checker",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        epilog="Example: zk_checker --input results.json --verbose",
     )
     parser.add_argument(
         "--input",
