@@ -32,6 +32,10 @@ def summarize(results):
     print(f"Failed     : {fails}")
     if fails:
         print("\nFailures details:")
+            print("\nSummary:")
+    print(f"  total : {total}")
+    print(f"  pass  : {passes}")
+    print(f"  fail  : {fails}")
         for r in results:
             if r.get("status") != "pass":
                 name = r.get("name", "<unnamed>")
