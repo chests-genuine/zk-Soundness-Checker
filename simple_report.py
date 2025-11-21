@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+Generate a simple summary report from a JSON results file.
+"""
 import argparse
 import json
 import sys
