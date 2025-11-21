@@ -6,7 +6,8 @@ import sys
 
 def parse_args() -> argmparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Print failing checks from a JSON results file."
+        description="Print failing checks from a JSON results file.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
         "--input",
