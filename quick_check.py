@@ -7,11 +7,13 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Quick summary checker for zk-Soundness-Checker"
     )
-    parser.add_argument(
+     parser.add_argument(
         "--input",
         required=True,
-        help="Path to input JSON file with check results."
+        type=argparse.FileType("r", encoding="utf-8"),
+        help="Path to input JSON file with check results.",
     )
+
     parser.add_argument(
         "--verbose",
         action="store_true",
