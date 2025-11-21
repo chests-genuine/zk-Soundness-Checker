@@ -12,13 +12,19 @@ def parse_args():
         required=True,
         help="Path to input JSON file with check results."
     )
+        parser.add_argument(
+        "--only-failed",
+        action="store_true",
+        help="In text mode, only print IDs/names of failed checks.",
+    )
+
     parser.add_argument(
         "--verbose",
         action="store_true",
         help="Verbose output"
     )
     return parser.parse_args()
-
+  # 'only-failed' is handled in main; this function stays generic
 def load_checks(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -35,10 +41,11 @@ def summarize(checks, verbose=False):
     print(f"Total checks: {total}")
     print(f"Passed:       {passed}")
     print(f"Failed:       {failed}")
-    if verbose and failed > 0:
-        print("\nFailures details:")
+  if args.verbose and args.only_failed:
+        print("\nFailed checks:")
         for c in checks:
             if c.get("status") != "pass":
+                print(f" - {c.get('name', '<unknown>')}")
                 name = c.get("name", "<unknown>")
                 msg  = c.get("message", "<no-message>")
                 print(f" - {name}: {msg}")
