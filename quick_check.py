@@ -3,6 +3,7 @@ import argparse
 import json
 import sys
 
+__version__ = "0.1.0"
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Quick summary checker for zk-Soundness-Checker"
@@ -17,6 +18,13 @@ def parse_args():
         action="store_true",
         help="Verbose output"
     )
+        parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+        help="Show program version and exit.",
+    )
+
     return parser.parse_args()
 
 def load_checks(path):
