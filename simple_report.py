@@ -41,8 +41,8 @@ def summarize(results):
 def main():
     args = parse_args()
     data = load_data(args.file)
-    if not isinstance(data, list):
-        print("ERROR: expected JSON array of result objects", file=sys.stderr)
+       if any(not isinstance(item, dict) for item in data):
+        print("ERROR: each result must be a JSON object (dict).", file=sys.stderr)
         sys.exit(1)
     summarize(data)
     if any(r.get("status") != "pass" for r in data):
