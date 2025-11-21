@@ -46,6 +46,8 @@ def summarize(checks, verbose=False):
 def main():
     args = parse_args()
     checks = load_checks(args.input)
+        if args.verbose:
+        print(f"Loaded checks from: {args.input}")
     if not isinstance(checks, list):
         print("ERROR: Expected a list of check results (JSON array).", file=sys.stderr)
         sys.exit(1)
