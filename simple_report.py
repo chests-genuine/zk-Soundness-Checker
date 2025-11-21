@@ -3,6 +3,7 @@
 import argparse
 import json
 import sys
+__version__ = "0.1.0"
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -13,6 +14,13 @@ def parse_args():
         required=True,
         help="Path to JSON file with results (list of objects)."
     )
+        parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+        help="Show program version and exit.",
+    )
+
     return parser.parse_args()
 
 def load_data(path):
