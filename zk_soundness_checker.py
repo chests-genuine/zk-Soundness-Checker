@@ -12,6 +12,7 @@ def verify_zk_contract(address):
     if not w3.is_connected():
         print("❌ Connection to RPC failed.")
         sys.exit(1)
+            print("=== zk contract soundness check ===")
     code = w3.eth.get_code(Web3.to_checksum_address(address))
     zk_hash = hashlib.sha256(code).hexdigest()
     print("🔗 Connected to Ethereum Mainnet")
