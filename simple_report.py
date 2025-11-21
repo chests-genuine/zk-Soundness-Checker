@@ -8,11 +8,18 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Generate simple summary report of results."
     )
-    parser.add_argument(
+     parser.add_argument(
         "--file", "-f",
         required=True,
         help="Path to JSON file with results (list of objects)."
     )
+
+        parser.add_argument(
+        "--names-only",
+        action="store_true",
+        help="Only print names of failing checks, one per line.",
+    )
+
     return parser.parse_args()
 
 def load_data(path):
@@ -41,11 +48,22 @@ def summarize(results):
 def main():
     args = parse_args()
     data = load_data(args.file)
+    failures = [r for r in data if r.get("status") != "pass"]
+
+    if args.names_only:
+        for r in failures:
+            print(r.get("name", "<unnamed>"))
+    else:
+        summarize(data)
+
     if not isinstance(data, list):
         print("ERROR: expected JSON array of result objects", file=sys.stderr)
         sys.exit(1)
     summarize(data)
     if any(r.get("status") != "pass" for r in data):
+        sys.exit(2)
+    sys.exit(0)
+    if failures:
         sys.exit(2)
     sys.exit(0)
 
