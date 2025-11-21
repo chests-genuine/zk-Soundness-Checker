@@ -38,7 +38,16 @@ def load_results(path: str):
 
 def main() -> None:
     args = parse_args()
-    checks = load_results(args.input)
+      if args.input == "-":
+        try:
+            data = json.load(sys.stdin)
+        except Exception as e:  # noqa: BLE001
+            print(f"ERROR: failed to read JSON from stdin: {e}", file=sys.stderr)
+            sys.exit(1)
+        checks = data
+    else:
+        checks = load_results(args.input)
+
 
     failures = [c for c in checks if c.get("status") != "pass"]
 
