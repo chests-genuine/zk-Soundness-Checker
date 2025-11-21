@@ -13,6 +13,11 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--fail-on-warn",
+        action="store_true",
+        help="Treat status 'warn' as a failure for exit-code purposes.",
+    )
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -20,6 +25,17 @@ def parse_args() -> argmparse.Namespace:
     )
     return parser.parse_args()
 
+    def is_failure(c):
+        s = c.get(status_field)
+        if s is None:
+            return args.strict
+        if s == success_value:
+            return False
+        if s == "warn" and not args.fail_on_warn:
+            return False
+        return True
+
+    failures = [c for c in checks if is_failure(c)]
 
 def load_results(path: str):
     try:
