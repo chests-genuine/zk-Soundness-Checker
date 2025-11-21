@@ -18,6 +18,11 @@ def verify_zk_contract(address):
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
+# Exit codes:
+# 0 = success / hash computed (and matches if expected given)
+# 1 = bad input or RPC connection failure
+# 2 = no code at address
+# 3 = expected hash mismatch or integrity failure
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
