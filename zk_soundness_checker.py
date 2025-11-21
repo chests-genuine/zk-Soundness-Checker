@@ -9,12 +9,22 @@ CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contr
 
 def verify_zk_contract(address):
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
-    if not w3.is_connected():
+     if not w3.is_connected():
         print("❌ Connection to RPC failed.")
         sys.exit(1)
+
+    try:
+        chain_id = w3.eth.chain_id
+    except Exception:
+        chain_id = None
+
     code = w3.eth.get_code(Web3.to_checksum_address(address))
     zk_hash = hashlib.sha256(code).hexdigest()
-    print("🔗 Connected to Ethereum Mainnet")
+    if chain_id == 1:
+        print("🔗 Connected to Ethereum Mainnet (chainId=1)")
+    else:
+        print(f"🔗 Connected to chainId={chain_id}")
+
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
