@@ -19,7 +19,10 @@ def parse_args():
     )
     return parser.parse_args()
 
-def load_checks(path):
+from typing import Any
+
+def load_checks(path: str) -> Any:
+
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
