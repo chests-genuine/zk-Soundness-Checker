@@ -4,7 +4,7 @@ import argparse
 import json
 import sys
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Generate simple summary report of results."
     )
