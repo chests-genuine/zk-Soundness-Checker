@@ -36,6 +36,10 @@ def load_results(path: str):
     return data
 
 
+# Exit codes:
+# 0 = no failing checks
+# 1 = input / JSON / format error
+# 2 = one or more checks failed
 def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
