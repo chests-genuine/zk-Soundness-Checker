@@ -20,6 +20,7 @@ def parse_args():
     return parser.parse_args()
 
 def load_checks(path):
+     """Load JSON check results from the given file path."""
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
