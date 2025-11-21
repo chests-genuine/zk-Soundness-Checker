@@ -17,6 +17,7 @@ def parse_args():
         action="store_true",
         help="Verbose output"
     )
+    
     return parser.parse_args()
 
 def load_checks(path):
