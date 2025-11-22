@@ -43,6 +43,10 @@ def summarize(checks, verbose=False):
                 msg  = c.get("message", "<no-message>")
                 print(f" - {name}: {msg}")
 
+# Exit codes:
+# 0 = all checks passed
+# 1 = input / JSON error
+# 2 = one or more checks failed
 def main():
     args = parse_args()
     checks = load_checks(args.input)
