@@ -12,6 +12,12 @@ def parse_args():
         required=True,
         help="Path to input JSON file with check results."
     )
+        parser.add_argument(
+        "--success-value",
+        default="pass",
+        help="Which status value counts as success (default: pass).",
+    )
+
     parser.add_argument(
         "--verbose",
         action="store_true",
@@ -30,7 +36,8 @@ def load_checks(path):
 
 def summarize(checks, verbose=False):
     total = len(checks)
-    passed = sum(1 for c in checks if c.get("status") == "pass")
+       success_value = getattr(parse_args, "_success_value", "pass")  # see below
+    passed = sum(1 for c in checks if c.get("status") == success_value)
     failed = total - passed
     print(f"Total checks: {total}")
     print(f"Passed:       {passed}")
