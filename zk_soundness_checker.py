@@ -20,4 +20,10 @@ def verify_zk_contract(address):
     print("✅ Verification complete — code integrity verified for zk environment.")
 
 if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nAborted by user.", file=sys.stderr)
+        sys.exit(130)
+
     verify_zk_contract(CONTRACT_ADDRESS)
