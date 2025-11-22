@@ -3,6 +3,8 @@ import argparse
 import json
 import sys
 
+def eprint(msg: str) -> None:
+    print(msg, file=sys.stderr)
 
 def parse_args() -> argmparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -26,7 +28,7 @@ def load_results(path: str):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
     except Exception as e:  # noqa: BLE001
-        print(f"ERROR: failed to read JSON from {path}: {e}", file=sys.stderr)
+               eprint(f"ERROR: failed to read JSON from {path}: {e}")
         sys.exit(1)
 
     if not isinstance(data, list):
