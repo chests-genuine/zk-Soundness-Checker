@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--include-status",
+        action="store_true",
+        help="When used with --names-only, also print the status.",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -46,10 +52,15 @@ def main() -> None:
         print("No failing checks 🎉")
         sys.exit(0)
 
-    if args.names_only:
-        for c in failures:
+     if args.names_only:
+        for c in sorted(failures, key=lambda x: str(x.get("name", ""))):
             name = c.get("name", "<unknown>")
-            print(name)
+            if args.include_status:
+                status = c.get(args.status_field, "<unknown>")
+                print(f"{name} [{status}]")
+            else:
+                print(name)
+
     else:
         for c in failures:
             name = c.get("name", "<unknown>")
