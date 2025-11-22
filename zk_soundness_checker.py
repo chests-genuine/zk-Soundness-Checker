@@ -2,9 +2,10 @@
 from web3 import Web3
 import sys
 import hashlib
-
 # Simple verifier script for on-chain ZK contract soundness
-RPC_URL = "https://mainnet.infura.io/v3/your_api_key"
+import os
+
+RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
 
 def verify_zk_contract(address):
