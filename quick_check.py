@@ -12,6 +12,12 @@ def parse_args():
         required=True,
         help="Path to input JSON file with check results."
     )
+        parser.add_argument(
+        "--fail-on-warn",
+        action="store_true",
+        help="Treat status 'warn' as a failure for exit-code purposes.",
+    )
+
     parser.add_argument(
         "--verbose",
         action="store_true",
@@ -50,9 +56,15 @@ def main():
         print("ERROR: Expected a list of check results (JSON array).", file=sys.stderr)
         sys.exit(1)
     summarize(checks, verbose=args.verbose)
-    if any(c.get("status") != "pass" for c in checks):
+    if args.fail_on_warn:
+        failed = any(c.get("status") not in ("pass",) for c in checks)
+    else:
+        failed = any(c.get("status") != "pass" for c in checks)
+
+    if failed:
         sys.exit(2)
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
