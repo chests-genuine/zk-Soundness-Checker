@@ -5,8 +5,10 @@ import json
 import sys
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Generate simple summary report of results."
+     parser = argparse.ArgumentParser(
+        description="Generate simple summary report of results.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        epilog="Example: summary_report.py -f results.json",
     )
     parser.add_argument(
         "--file", "-f",
