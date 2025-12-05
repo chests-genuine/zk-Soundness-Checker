@@ -4,6 +4,9 @@ import argparse
 import json
 import sys
 
+def eprint(msg: str) -> None:
+    print(msg, file=sys.stderr)
+    
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Generate simple summary report of results."
@@ -20,7 +23,7 @@ def load_data(path):
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
-        print(f"ERROR: Could not load JSON file {path}: {e}", file=sys.stderr)
+                eprint(f"ERROR: Could not load JSON file {path}: {e}")
         sys.exit(1)
 
 def summarize(results):
@@ -42,7 +45,7 @@ def main():
     args = parse_args()
     data = load_data(args.file)
     if not isinstance(data, list):
-        print("ERROR: expected JSON array of result objects", file=sys.stderr)
+               eprint("ERROR: expected JSON array of result objects")
         sys.exit(1)
     summarize(data)
     if any(r.get("status") != "pass" for r in data):
