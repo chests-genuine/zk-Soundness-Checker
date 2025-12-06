@@ -16,7 +16,7 @@ RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
 
 def verify_zk_contract(address):
-    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+      w3 = Web3(Web3.HTTPProvider(RPC_URL, request_kwargs={"timeout": 20}))
     if not w3.is_connected():
         print(f"📦 Current block number: {w3.eth.block_number}")
 
