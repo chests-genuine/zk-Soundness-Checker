@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Treat checks with missing status as failures.",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -40,7 +46,17 @@ def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
 
-    failures = [c for c in checks if c.get("status") != "pass"]
+       if args.strict:
+        failures = [
+            c for c in checks
+            if c.get(status_field) != success_value
+        ]
+    else:
+        failures = [
+            c for c in checks
+            if status_field in c and c.get(status_field) != success_value
+        ]
+
 
     if not failures:
         print("No failing checks 🎉")
