@@ -30,7 +30,10 @@ def verify_zk_contract(address):
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
-
+  parser.add_argument(
+        "--expected-sha256",
+        help="Optional expected SHA256 hash; exits non-zero if it does not match.",
+    )
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
 import time
