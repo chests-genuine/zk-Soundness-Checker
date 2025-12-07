@@ -42,8 +42,8 @@ def main() -> None:
 
     failures = [c for c in checks if c.get("status") != "pass"]
 
-    if not failures:
-        print("No failing checks 🎉")
+     if not failures:
+        print("No failing checks 🎉 (all checks passed)")
         sys.exit(0)
 
     if args.names_only:
