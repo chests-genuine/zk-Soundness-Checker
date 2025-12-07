@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--max-failures",
+        type=int,
+        default=None,
+        help="If set, print at most this many failures.",
+    )
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -59,6 +65,8 @@ def main() -> None:
             if msg:
                 print(f"  -> {msg}")
         print(f"\nTotal failures: {len(failures)}")
+    if args.max_failures is not None:
+        failures = failures[: args.max_failures]
 
     # non-zero exit if there are failures
     sys.exit(2)
