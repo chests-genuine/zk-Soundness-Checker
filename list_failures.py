@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--status-field",
+        default="status",
+        help="JSON field name that holds the status value (default: status).",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -40,7 +46,8 @@ def main() -> None:
     args = parse_args()
     checks = load_results(args.input)
 
-    failures = [c for c in checks if c.get("status") != "pass"]
+       status_field = args.status_field
+    failures = [c for c in checks if c.get(status_field) != "pass"]
 
     if not failures:
         print("No failing checks 🎉")
@@ -53,7 +60,7 @@ def main() -> None:
     else:
         for c in failures:
             name = c.get("name", "<unknown>")
-            status = c.get("status", "<unknown>")
+                       status = c.get(status_field, "<unknown>")
             msg = c.get("message", "")
             print(f"[{status}] {name}")
             if msg:
