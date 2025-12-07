@@ -3,7 +3,7 @@ import argparse
 import json
 import sys
 
-
+__version__ = "0.1.0"
 def parse_args() -> argmparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Print failing checks from a JSON results file."
@@ -13,6 +13,13 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+        help="Show program version and exit.",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
