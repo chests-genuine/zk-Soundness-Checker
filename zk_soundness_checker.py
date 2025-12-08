@@ -22,6 +22,7 @@ def verify_zk_contract(address):
 
         print("❌ Connection to RPC failed.")
         sys.exit(1)
+            print("=== zk contract soundness check ===")
     code = w3.eth.get_code(Web3.to_checksum_address(address))
     print(f"🧩 Contract code length: {len(code)} bytes")
 
