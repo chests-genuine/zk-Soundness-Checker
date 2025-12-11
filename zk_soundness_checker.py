@@ -30,6 +30,8 @@ def verify_zk_contract(address):
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
+block_number = w3.eth.block_number
+print(f"🧩 Block number: {block_number}")
 
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
