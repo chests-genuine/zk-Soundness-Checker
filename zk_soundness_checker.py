@@ -14,6 +14,10 @@ import os
 
 RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
+def short_rpc(url: str, max_len: int = 60) -> str:
+    if len(url) <= max_len:
+        return url
+    return url[:40] + "…" + url[-15:]
 
 def verify_zk_contract(address):
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
@@ -22,6 +26,7 @@ def verify_zk_contract(address):
 
         print("❌ Connection to RPC failed.")
         sys.exit(1)
+            print(f"Using RPC: {short_rpc(RPC_URL)}")
     code = w3.eth.get_code(Web3.to_checksum_address(address))
     print(f"🧩 Contract code length: {len(code)} bytes")
 
