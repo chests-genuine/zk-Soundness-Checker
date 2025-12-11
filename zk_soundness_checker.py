@@ -11,6 +11,12 @@ import sys
 import hashlib
 # Simple verifier script for on-chain ZK contract soundness
 import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+logger.info("Connecting to Ethereum network...")
 
 RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
