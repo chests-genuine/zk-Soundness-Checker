@@ -31,8 +31,21 @@ def verify_zk_contract(address):
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
 
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Verify ZK contract code integrity.")
+    parser.add_argument("--contract-address", required=True, help="Contract address to verify.")
+    p.add_argument("--quiet", action="store_true", help="Suppress non-essential logs.")
+if args.quiet:
+    logger.setLevel(logging.ERROR)
+
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    verify_zk_contract(CONTRACT_ADDRESS)
+    args = parse_args()
+    verify_zk_contract(args.contract_address)
+
 import time
 start = time.time()
 # ... основной код ...
