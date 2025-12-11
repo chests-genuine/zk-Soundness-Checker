@@ -11,6 +11,12 @@ import sys
 import hashlib
 # Simple verifier script for on-chain ZK contract soundness
 import os
+from eth_account import Account
+
+def sign_attestation(payload, private_key):
+    account = Account.from_key(private_key)
+    signed_msg = Account.sign_message(encode_defunct(primitive=payload), private_key)
+    return signed_msg.signature.hex()
 
 RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
