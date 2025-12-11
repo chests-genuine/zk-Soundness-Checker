@@ -22,7 +22,12 @@ def verify_zk_contract(address):
 
         print("❌ Connection to RPC failed.")
         sys.exit(1)
+   try:
     code = w3.eth.get_code(Web3.to_checksum_address(address))
+except Exception as e:
+    print(f"❌ Error fetching contract code: {e}", file=sys.stderr)
+    sys.exit(2)
+
     print(f"🧩 Contract code length: {len(code)} bytes")
 
     zk_hash = hashlib.sha256(code).hexdigest()
