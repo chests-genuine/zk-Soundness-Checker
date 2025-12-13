@@ -30,6 +30,9 @@ def load_checks(path):
 
 def summarize(checks, verbose=False):
     total = len(checks)
+    if total == 0:
+        print("No checks found in input (empty list).")
+        return
     passed = sum(1 for c in checks if c.get("status") == "pass")
     failed = total - passed
     print(f"Total checks: {total}")
