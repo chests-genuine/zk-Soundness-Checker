@@ -6,7 +6,8 @@ import sys
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Generate simple summary report of results."
+        description="Generate simple summary report of results.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
         "--file", "-f",
