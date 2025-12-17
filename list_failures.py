@@ -13,6 +13,12 @@ def parse_args() -> argmparse.Namespace:
         required=True,
         help="Path to input JSON file (array of check objects).",
     )
+        parser.add_argument(
+        "--success-value",
+        default="pass",
+        help="Status value considered as success (default: pass).",
+    )
+
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -35,6 +41,9 @@ def load_results(path: str):
 
     return data
 
+    status_field = args.status_field
+    success_value = args.success_value
+    failures = [c for c in checks if c.get(status_field) != success_value]
 
 def main() -> None:
     args = parse_args()
