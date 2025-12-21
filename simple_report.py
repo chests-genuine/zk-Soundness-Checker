@@ -17,8 +17,9 @@ def parse_args():
 
 def load_data(path):
     try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
+               with open(path, "r", encoding="utf-8") as f:
+            raw = f.read().lstrip("\ufeff")
+            return json.loads(raw)
     except Exception as e:
         print(f"ERROR: Could not load JSON file {path}: {e}", file=sys.stderr)
         sys.exit(1)
