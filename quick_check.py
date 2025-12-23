@@ -45,6 +45,17 @@ def summarize(checks, verbose=False):
 
 def main():
     args = parse_args()
+        input_path = args.input
+    if input_path == "-":
+        data = sys.stdin.read()
+        try:
+            checks = json.loads(data)
+        except Exception as e:
+            print(f"ERROR: Failed to load JSON from stdin: {e}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        checks = load_checks(input_path)
+
     checks = load_checks(args.input)
     if not isinstance(checks, list):
         print("ERROR: Expected a list of check results (JSON array).", file=sys.stderr)
