@@ -30,7 +30,11 @@ def verify_zk_contract(address):
     print(f"Contract address: {address}")
     print(f"ZK Soundness Hash: {zk_hash}")
     print("✅ Verification complete — code integrity verified for zk environment.")
-
+ parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print JSON instead of human-readable output.",
+    )
 if __name__ == "__main__":
     verify_zk_contract(CONTRACT_ADDRESS)
 import time
