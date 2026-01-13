@@ -38,7 +38,7 @@ def summarize(results):
                 msg  = r.get("message", "")
                 print(f" * {name}: {msg}")
 
-def main():
+def main() -> None:
     args = parse_args()
     data = load_data(args.file)
     if not isinstance(data, list):
