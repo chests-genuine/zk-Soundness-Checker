@@ -21,7 +21,8 @@ def parse_args() -> argmparse.Namespace:
     return parser.parse_args()
 
 
-def load_results(path: str):
+def load_results(path: str) -> List[Dict[str, Any]]:
+    """Load JSON check results from the given file path and ensure it is a list."""
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
