@@ -18,6 +18,12 @@ def parse_args() -> argmparse.Namespace:
         action="store_true",
         help="Only print the names of failing checks, one per line.",
     )
+        parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit a JSON summary instead of human-readable text.",
+    )
+
     return parser.parse_args()
 
 
@@ -59,6 +65,16 @@ def main() -> None:
             if msg:
                 print(f"  -> {msg}")
         print(f"\nTotal failures: {len(failures)}")
+    if args.json:
+        summary = {
+            "total": len(checks),
+            "failed": len(failures),
+            "passed": len(checks) - len(failures),
+            "has_failures": bool(failures),
+        }
+        json.dump(summary, sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        sys.exit(2 if failures else 0)
 
     # non-zero exit if there are failures
     sys.exit(2)
