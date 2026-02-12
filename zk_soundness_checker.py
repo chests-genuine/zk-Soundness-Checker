@@ -16,6 +16,18 @@ RPC_URL = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 CONTRACT_ADDRESS = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"  # Example contract
 
 def verify_zk_contract(address):
+        verify_zk_contract(
+        args.address,
+        expected_sha256=args.expected_sha256,
+        json_mode=args.json,
+        keccak_only=args.keccak_only,
+    )
+    if keccak_only:
+        print(f"Keccak256 ZK Hash: {hashes['keccak256']}")
+    else:
+        print(f"SHA256 ZK Hash   : {hashes['sha256']}")
+        print(f"Keccak256 ZK Hash: {hashes['keccak256']}")
+
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
     if not w3.is_connected():
         print(f"📦 Current block number: {w3.eth.block_number}")
