@@ -43,7 +43,8 @@ def summarize(checks, verbose=False):
                 msg  = c.get("message", "<no-message>")
                 print(f" - {name}: {msg}")
 
-def main():
+def main() -> None:
+    """CLI entrypoint for printing failing checks from a JSON results file."""
     args = parse_args()
     checks = load_checks(args.input)
     if not isinstance(checks, list):
